@@ -2,7 +2,7 @@
 .mode column
 
 -- 1.1
-
+SELECT ALL FROM locations
 
 -- 1.2
 
