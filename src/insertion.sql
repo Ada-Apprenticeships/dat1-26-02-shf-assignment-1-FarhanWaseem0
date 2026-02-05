@@ -20,3 +20,10 @@ VALUES
 ('9','Iris','West','iris.west@email.com','07700 900017','1993-04-14','2023-09-10','Barry Allen','07700 900018'),
 ('10','Jack','Ryan','jack.ryan@email.com','07700 900019','1982-10-08','2023-10-15','Cathy Ryan','07700 900020'),
 ('11','Kevin','Mitnick','kevin.mitnick@email.com','07700 900021','1996-01-22','2023-11-20','Unknown','07700 900022');
+
+INSERT INTO staff (staff_id, first_name, last_name, email, phone_number, position, hire_date, location_id)
+VALUES
+('1','James','Bond','james.bond@fittrackpro.com','07007 007007','Manager','2022-01-01','1'),
+('2','Ivy','Irwin','ivy.irwin@fittrackpro.com','07123 456789','Trainer','2023-05-15','1'),
+('3','Sarah','Connor','sarah.connor@fittrackpro.com','07999 888777','Receptionist','2023-08-01','1'),
+('4','Lara','Croft','lara.croft@fittrackpro.com','07555 444333','Trainer','2023-09-10','2');

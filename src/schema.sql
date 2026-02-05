@@ -43,18 +43,18 @@ CREATE TABLE members (
 
 );
 
--- CREATE TABLE staff  (
+CREATE TABLE staff  (
 
---     staff_id         CHAR(20) PRIMARY KEY,
---     first_name       VARCHAR NOT NULL,
---     last_name        VARCHAR NOT NULL,
---     email            VARCHAR NOT NULL,
---     phone_number     VARCHAR NOT NULL,
---     position         VARCHAR NOT NULL,
---     hire_date        VARCHAR NOT NULL,
---     location_if      VARCHAR NOT NULL
+    staff_id CHAR(20) PRIMARY KEY,
+    first_name VARCHAR NOT NULL,
+    last_name VARCHAR NOT NULL,
+    email VARCHAR NOT NULL,
+    phone_number VARCHAR NOT NULL,
+    position VARCHAR NOT NULL,
+    hire_date VARCHAR NOT NULL,
+    location_id VARCHAR NOT NULL
 
--- )
+);
 
 
 -- CREATE TABLE equipment  (
@@ -67,5 +67,5 @@ CREATE TABLE members (
 --     next_maintenance_date VARCHAR NOT NULL,
 --     location_id VARCHAR NOT NULL
 
--- )
+-- );
 
