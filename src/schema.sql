@@ -1,5 +1,5 @@
 .open fittrackpro.db
-.mode column
+.mode box
 
 -- For dropping the tables when not needed
 DROP TABLE IF EXISTS locations;
@@ -27,3 +27,19 @@ CREATE TABLE locations  (
     opening_hours       VARCHAR NOT NULL,
 
 );
+
+
+CREATE TABLE members  (
+
+    member_id           CHAR(20) PRIMARY KEY,
+    first_name          VARCHAR NOT NULL,
+    last_name           VARCHAR NOT NULL,
+    email               VARCHAR NOT NULL,
+    phone_number        VARCHAR NOT NULL,
+    date_of_birth       VARCHAR NOT NULL,
+    join_date           VARCHAR NOT NULL,
+    emergency_contact_name  VARCHAR NOT NULL,
+    emergency_contact_phone  VARCHAR NOT NULL
+
+);
+
