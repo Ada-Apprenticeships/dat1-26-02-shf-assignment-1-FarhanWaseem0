@@ -19,29 +19,29 @@ DROP TABLE IF EXISTS equipment_maintenance_log;
 
 CREATE TABLE locations (
 
-    location_id         CHAR(20) PRIMARY KEY,
-    name                VARCHAR NOT NULL,
-    address             VARCHAR NOT NULL,
-    phone_number        VARCHAR NOT NULL,
-    email               VARCHAR NOT NULL,
-    opening_hours       VARCHAR NOT NULL
+    location_id CHAR(20) PRIMARY KEY,
+    name VARCHAR NOT NULL,
+    address VARCHAR NOT NULL,
+    phone_number VARCHAR NOT NULL,
+    email VARCHAR NOT NULL,
+    opening_hours VARCHAR NOT NULL
 
 );
 
 
--- CREATE TABLE members  (
+CREATE TABLE members (
 
---     member_id           CHAR(20) PRIMARY KEY,
---     first_name          VARCHAR NOT NULL,
---     last_name           VARCHAR NOT NULL,
---     email               VARCHAR NOT NULL,
---     phone_number        VARCHAR NOT NULL,
---     date_of_birth       VARCHAR NOT NULL,
---     join_date           VARCHAR NOT NULL,
---     emergency_contact_name  VARCHAR NOT NULL,
---     emergency_contact_phone  VARCHAR NOT NULL
+    member_id CHAR(20) PRIMARY KEY,
+    first_name VARCHAR NOT NULL,
+    last_name VARCHAR NOT NULL,
+    email VARCHAR NOT NULL,
+    phone_number VARCHAR NOT NULL,
+    date_of_birth VARCHAR NOT NULL,
+    join_date VARCHAR NOT NULL,
+    emergency_contact_name VARCHAR NOT NULL,
+    emergency_contact_phone VARCHAR NOT NULL
 
--- );
+);
 
 -- CREATE TABLE staff  (
 
