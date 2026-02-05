@@ -3,8 +3,8 @@
 
 INSERT INTO locations (location_id, name, address, phone_number, email, opening_hours)
 VALUES  
-('1', 'Downtown Fitness', '123 Main St', 'Cityville', '555-1234', 'downtown@fitnesstrackpro.com', '6:00-22:00'),
-('2', 'Suburb Gym', '456 Oak Rd, Townsburg', '555-5678', 'suburb@fittrackpro.com', '5:00-23:00');
+('1','Downtown Fitness','123 Main St London','020 555 1234','downtown@fittrackpro.com','06:00-22:00'),
+('2','Suburban Wellness','45 Oak Ln Manchester','0161 555 5678','suburban@fittrackpro.com','05:00-23:00')
 
 
 -- INSERT INTO members (first_name, last_name, email, phone_number, date_of_birth, join_date, emergency_contact_name, emergency_contact_phone)

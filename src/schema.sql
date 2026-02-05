@@ -17,14 +17,14 @@ DROP TABLE IF EXISTS member_health_metrics;
 DROP TABLE IF EXISTS equipment_maintenance_log;
 
 
-CREATE TABLE locations  (
+CREATE TABLE locations (
 
     location_id         CHAR(20) PRIMARY KEY,
     name                VARCHAR NOT NULL,
     address             VARCHAR NOT NULL,
     phone_number        VARCHAR NOT NULL,
     email               VARCHAR NOT NULL,
-    opening_hours       VARCHAR NOT NULL,
+    opening_hours       VARCHAR NOT NULL
 
 );
 
