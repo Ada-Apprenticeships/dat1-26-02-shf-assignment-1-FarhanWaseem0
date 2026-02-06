@@ -92,3 +92,13 @@ CREATE TABLE class_schedule  (
 
 );
 
+CREATE TABLE memberships  (
+
+    membership_id CHAR(20) PRIMARY KEY,
+    member_id VARCHAR NOT NULL,
+    type VARCHAR NOT NULL,
+    start_date VARCHAR NOT NULL,
+    end_date VARCHAR NOT NULL,
+    status VARCHAR NOT NULL
+
+);
