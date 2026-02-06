@@ -57,15 +57,38 @@ CREATE TABLE staff  (
 );
 
 
--- CREATE TABLE equipment  (
+CREATE TABLE equipment  (
 
---     equipment_id CHAR(20) PRIMARY KEY,
---     name VARCHAR NOT NULL,
---     type VARCHAR NOT NULL,
---     purchase_date VARCHAR NOT NULL,
---     last_maintenance_date VARCHAR NOT NULL,
---     next_maintenance_date VARCHAR NOT NULL,
---     location_id VARCHAR NOT NULL
+    equipment_id CHAR(20) PRIMARY KEY,
+    name VARCHAR NOT NULL,
+    type VARCHAR NOT NULL,
+    purchase_date VARCHAR NOT NULL,
+    last_maintenance_date VARCHAR NOT NULL,
+    next_maintenance_date VARCHAR NOT NULL,
+    location_id VARCHAR NOT NULL
 
--- );
+);
+
+
+CREATE TABLE classes  (
+
+    class_id CHAR(20) PRIMARY KEY,
+    name VARCHAR NOT NULL,
+    description VARCHAR NOT NULL,
+    capacity VARCHAR NOT NULL,
+    duration VARCHAR NOT NULL,
+    location_id VARCHAR NOT NULL
+
+);
+
+
+CREATE TABLE class_schedule  (
+
+    schedule_id CHAR(20) PRIMARY KEY,
+    class_id VARCHAR NOT NULL,
+    staff_id VARCHAR NOT NULL,
+    start_time VARCHAR NOT NULL,
+    end_time VARCHAR NOT NULL
+
+);
 

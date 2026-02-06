@@ -27,3 +27,23 @@ VALUES
 ('2','Ivy','Irwin','ivy.irwin@fittrackpro.com','07123 456789','Trainer','2023-05-15','1'),
 ('3','Sarah','Connor','sarah.connor@fittrackpro.com','07999 888777','Receptionist','2023-08-01','1'),
 ('4','Lara','Croft','lara.croft@fittrackpro.com','07555 444333','Trainer','2023-09-10','2');
+
+INSERT INTO equipment (equipment_id, name, type, purchase_date, last_maintenance_date, next_maintenance_date, location_id)
+VALUES 
+('1','Treadmill 2000','Cardio','2023-01-15','2024-12-15','2025-01-15','1'),
+('2','Elliptical Trainer','Cardio','2023-02-20','2024-07-20','2025-02-20','1'),
+('3','Smith Machine','Strength','2023-03-10','2024-03-10','2025-03-10','1'),
+('4','Dumbbell Set','Strength','2023-04-05','2024-04-05','2025-04-05','2');
+
+INSERT INTO classes (class_id, name, description, capacity, duration, location_id)
+VALUES 
+('1','Spin Class','High intensity indoor cycling','20','45','1'),
+('2','Yoga Basics','Beginner level yoga','15','60','1'),
+('3','HIIT','High Interval Intensity Training','10','30','2');
+
+INSERT INTO class_schedule (schedule_id, class_id, staff_id, start_time, end_time)
+VALUES 
+('1','1','2','2025-02-01 09:00:00','2025-02-01 09:45:00'),
+('2','2','4','2025-02-01 10:00:00','2025-02-01 11:00:00'),
+('3','3','2','2025-02-02 18:00:00','2025-02-02 18:30:00'),
+('7','2','4','2025-02-05 12:00:00','2025-02-05 13:00:00');
