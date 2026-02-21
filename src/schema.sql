@@ -122,4 +122,49 @@ CREATE TABLE class_attendance  (
 
 );
 
+CREATE TABLE payments  (
+
+    payment_id CHAR(20) PRIMARY KEY,
+    member_id VARCHAR NOT NULL,
+    amount VARCHAR NOT NULL,
+    payment_date VARCHAR NOT NULL,
+    payment_method VARCHAR NOT NULL,
+    payment_type VARCHAR NOT NULL
+
+);
+
+CREATE TABLE personal_training_sessions  (
+
+    session_id CHAR(20) PRIMARY KEY,
+    member_id VARCHAR NOT NULL,
+    staff_id VARCHAR NOT NULL,
+    session_date VARCHAR NOT NULL,
+    start_time VARCHAR NOT NULL,
+    end_time VARCHAR NOT NULL,
+    notes VARCHAR NOT NULL
+
+);
+
+CREATE TABLE member_health_metrics  (
+
+    metric_id CHAR(20) PRIMARY KEY,
+    member_id VARCHAR NOT NULL,
+    measurement_date VARCHAR NOT NULL,
+    weight VARCHAR NOT NULL,
+    body_fat_percentage VARCHAR NOT NULL,
+    muscle_mass VARCHAR NOT NULL,
+    bmi VARCHAR NOT NULL
+
+);
+
+CREATE TABLE equipment_maintenance_log  (
+
+    log_id CHAR(20) PRIMARY KEY,
+    equipment_id VARCHAR NOT NULL,
+    maintenance_date VARCHAR NOT NULL,
+    description VARCHAR NOT NULL,
+    staff_id VARCHAR NOT NULL
+
+);
+
 
