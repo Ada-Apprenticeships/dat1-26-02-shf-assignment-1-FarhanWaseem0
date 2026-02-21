@@ -102,3 +102,24 @@ CREATE TABLE memberships  (
     status VARCHAR NOT NULL
 
 );
+
+CREATE TABLE attendance  (
+
+    attendance_id CHAR(20) PRIMARY KEY,
+    member_id VARCHAR NOT NULL,
+    location_id VARCHAR NOT NULL,
+    check_in_time VARCHAR NOT NULL,
+    check_out_time VARCHAR NOT NULL
+
+);
+
+CREATE TABLE class_attendance  (
+
+    class_attendance_id CHAR(20) PRIMARY KEY,
+    schedule_id VARCHAR NOT NULL,
+    member_id VARCHAR NOT NULL,
+    attendance_status VARCHAR NOT NULL
+
+);
+
+
