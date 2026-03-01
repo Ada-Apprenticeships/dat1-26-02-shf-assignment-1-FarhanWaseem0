@@ -36,8 +36,8 @@ CREATE TABLE members (
     last_name VARCHAR NOT NULL,
     email VARCHAR NOT NULL,
     phone_number VARCHAR NOT NULL,
-    date_of_birth VARCHAR NOT NULL,
-    join_date VARCHAR NOT NULL,
+    date_of_birth TEXT NOT NULL CHECK (date(date_of_birth) IS NOT NULL),
+    join_date TEXT NOT NULL CHECK (date(join_date) IS NOT NULL),
     emergency_contact_name VARCHAR NOT NULL,
     emergency_contact_phone VARCHAR NOT NULL
 
@@ -51,7 +51,7 @@ CREATE TABLE staff  (
     email VARCHAR NOT NULL,
     phone_number VARCHAR NOT NULL,
     position VARCHAR NOT NULL,
-    hire_date VARCHAR NOT NULL,
+    hire_date TEXT NOT NULL CHECK (date(hire_date) IS NOT NULL),
     location_id VARCHAR NOT NULL
 
 );
@@ -63,8 +63,8 @@ CREATE TABLE equipment  (
     name VARCHAR NOT NULL,
     type VARCHAR NOT NULL,
     purchase_date VARCHAR NOT NULL,
-    last_maintenance_date VARCHAR NOT NULL,
-    next_maintenance_date VARCHAR NOT NULL,
+    last_maintenance_date TEXT NOT NULL CHECK (date(last_maintenance_date) IS NOT NULL),
+    next_maintenance_date TEXT NOT NULL CHECK (date(next_maintenance_date) IS NOT NULL),
     location_id VARCHAR NOT NULL
 
 );
@@ -97,8 +97,8 @@ CREATE TABLE memberships  (
     membership_id CHAR(20) PRIMARY KEY,
     member_id VARCHAR NOT NULL,
     type VARCHAR NOT NULL,
-    start_date VARCHAR NOT NULL,
-    end_date VARCHAR NOT NULL,
+    start_date TEXT NOT NULL CHECK (date(start_date) IS NOT NULL),
+    end_date TEXT NOT NULL CHECK (date(end_date) IS NOT NULL),
     status VARCHAR NOT NULL
 
 );
@@ -127,7 +127,7 @@ CREATE TABLE payments  (
     payment_id CHAR(20) PRIMARY KEY,
     member_id VARCHAR NOT NULL,
     amount VARCHAR NOT NULL,
-    payment_date VARCHAR NOT NULL,
+    payment_date TEXT NOT NULL CHECK (date(payment_date) IS NOT NULL),
     payment_method VARCHAR NOT NULL,
     payment_type VARCHAR NOT NULL
 
@@ -138,7 +138,7 @@ CREATE TABLE personal_training_sessions  (
     session_id CHAR(20) PRIMARY KEY,
     member_id VARCHAR NOT NULL,
     staff_id VARCHAR NOT NULL,
-    session_date VARCHAR NOT NULL,
+    session_date TEXT NOT NULL CHECK (date(session_date) IS NOT NULL),
     start_time VARCHAR NOT NULL,
     end_time VARCHAR NOT NULL,
     notes VARCHAR NOT NULL
@@ -149,7 +149,7 @@ CREATE TABLE member_health_metrics  (
 
     metric_id CHAR(20) PRIMARY KEY,
     member_id VARCHAR NOT NULL,
-    measurement_date VARCHAR NOT NULL,
+    measurement_date TEXT NOT NULL CHECK (date(measurement_date) IS NOT NULL),
     weight VARCHAR NOT NULL,
     body_fat_percentage VARCHAR NOT NULL,
     muscle_mass VARCHAR NOT NULL,
@@ -161,10 +161,10 @@ CREATE TABLE equipment_maintenance_log  (
 
     log_id CHAR(20) PRIMARY KEY,
     equipment_id VARCHAR NOT NULL,
-    maintenance_date VARCHAR NOT NULL,
+    maintenance_date TEXT NOT NULL CHECK (date(maintenance_date) IS NOT NULL),
     description VARCHAR NOT NULL,
     staff_id VARCHAR NOT NULL
 
 );
 
-
+ 
