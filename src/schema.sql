@@ -53,7 +53,9 @@ CREATE TABLE staff  (
     phone_number VARCHAR NOT NULL CHECK (phone_number GLOB '[0-9 ]*'),
     position VARCHAR NOT NULL CHECK (position IN ('Trainer','Manager','Receptionist','Maintenance')),
     hire_date TEXT NOT NULL CHECK (date(hire_date) IS NOT NULL),
-    location_id VARCHAR NOT NULL
+    location_id VARCHAR NOT NULL,
+
+    FOREIGN KEY (location_id) REFERENCES locations(location_id)
 
 );
 
@@ -66,7 +68,10 @@ CREATE TABLE equipment  (
     purchase_date TEXT NOT NULL CHECK (date(purchase_date) IS NOT NULL),
     last_maintenance_date TEXT NOT NULL CHECK (date(last_maintenance_date) IS NOT NULL),
     next_maintenance_date TEXT NOT NULL CHECK (date(next_maintenance_date) IS NOT NULL),
-    location_id VARCHAR NOT NULL
+    location_id VARCHAR NOT NULL,
+
+    FOREIGN KEY (location_id) REFERENCES locations(location_id)
+
 
 );
 
@@ -78,7 +83,9 @@ CREATE TABLE classes  (
     description VARCHAR NOT NULL,
     capacity VARCHAR NOT NULL,
     duration VARCHAR NOT NULL,
-    location_id VARCHAR NOT NULL
+    location_id VARCHAR NOT NULL,
+
+    FOREIGN KEY (location_id) REFERENCES locations(location_id)
 
 );
 
@@ -89,7 +96,10 @@ CREATE TABLE class_schedule  (
     class_id VARCHAR NOT NULL,
     staff_id VARCHAR NOT NULL,
     start_time VARCHAR NOT NULL,
-    end_time VARCHAR NOT NULL
+    end_time VARCHAR NOT NULL,
+
+    FOREIGN KEY (class_id) REFERENCES classes(class_id),
+    FOREIGN KEY (staff_id) REFERENCES staff(staff_id)
 
 );
 
@@ -100,8 +110,9 @@ CREATE TABLE memberships  (
     type VARCHAR NOT NULL,
     start_date TEXT NOT NULL CHECK (date(start_date) IS NOT NULL),
     end_date TEXT NOT NULL CHECK (date(end_date) IS NOT NULL),
-    status VARCHAR NOT NULL
+    status VARCHAR NOT NULL,
 
+    FOREIGN KEY (member_id) REFERENCES members(member_id)
 );
 
 CREATE TABLE attendance  (
@@ -110,8 +121,10 @@ CREATE TABLE attendance  (
     member_id VARCHAR NOT NULL,
     location_id VARCHAR NOT NULL,
     check_in_time VARCHAR NOT NULL,
-    check_out_time VARCHAR NOT NULL
+    check_out_time VARCHAR NOT NULL,
 
+    FOREIGN KEY (member_id) REFERENCES members(member_id),
+    FOREIGN KEY (location_id) REFERENCES locations(location_id)
 );
 
 CREATE TABLE class_attendance  (
@@ -119,7 +132,10 @@ CREATE TABLE class_attendance  (
     class_attendance_id CHAR(20) PRIMARY KEY,
     schedule_id VARCHAR NOT NULL,
     member_id VARCHAR NOT NULL,
-    attendance_status VARCHAR NOT NULL
+    attendance_status VARCHAR NOT NULL,
+
+    FOREIGN KEY (schedule_id) REFERENCES class_schedule(schedule_id),
+    FOREIGN KEY (member_id) REFERENCES members(member_id)
 
 );
 
@@ -130,7 +146,9 @@ CREATE TABLE payments  (
     amount VARCHAR NOT NULL,
     payment_date TEXT NOT NULL CHECK (date(payment_date) IS NOT NULL),
     payment_method VARCHAR NOT NULL,
-    payment_type VARCHAR NOT NULL
+    payment_type VARCHAR NOT NULL,
+
+    FOREIGN KEY (member_id) REFERENCES members(member_id)
 
 );
 
