@@ -95,8 +95,8 @@ CREATE TABLE class_schedule  (
     schedule_id CHAR(20) PRIMARY KEY CHECK (schedule_id GLOB '[0-9]*'),
     class_id CHAR(20) CHECK (class_id GLOB '[0-9]*'),
     staff_id VCHAR(20) CHECK (staff_id GLOB '[0-9]*'),
-    start_time VARCHAR NOT NULL,
-    end_time VARCHAR NOT NULL,
+    start_time VARCHAR NOT NULL CHECK (datetime(start_time) IS NOT NULL),
+    end_time VARCHAR NOT NULL CHECK (datetime(end_time) IS NOT NULL),
 
     FOREIGN KEY (class_id) REFERENCES classes(class_id),
     FOREIGN KEY (staff_id) REFERENCES staff(staff_id)
@@ -107,10 +107,10 @@ CREATE TABLE memberships  (
 
     membership_id CHAR(20) PRIMARY KEY CHECK (membership_id GLOB '[0-9]*'),
     member_id VARCHAR NOT NULL CHECK (member_id GLOB '[0-9]*'),
-    type VARCHAR NOT NULL,
+    type VARCHAR NOT NULL CHECK (type IN ('Standard','Premium')),
     start_date TEXT NOT NULL CHECK (date(start_date) IS NOT NULL),
     end_date TEXT NOT NULL CHECK (date(end_date) IS NOT NULL),
-    status VARCHAR NOT NULL,
+    status VARCHAR NOT NULL CHECK (status IN ('Active','Inactive')),
 
     FOREIGN KEY (member_id) REFERENCES members(member_id)
 );
@@ -120,8 +120,8 @@ CREATE TABLE attendance  (
     attendance_id CHAR(20) PRIMARY KEY CHECK (attendance_id GLOB '[0-9]*'),
     member_id VARCHAR NOT NULL CHECK (member_id GLOB '[0-9]*'),
     location_id VARCHAR NOT NULL CHECK (location_id GLOB '[0-9]*'),
-    check_in_time VARCHAR NOT NULL,
-    check_out_time VARCHAR NOT NULL,
+    check_in_time VARCHAR NOT NULL CHECK (datetime(check_in_time) IS NOT NULL),
+    check_out_time VARCHAR NOT NULL CHECK (datetime(check_out_time) IS NOT NULL),
 
     FOREIGN KEY (member_id) REFERENCES members(member_id),
     FOREIGN KEY (location_id) REFERENCES locations(location_id)
@@ -132,7 +132,7 @@ CREATE TABLE class_attendance  (
     class_attendance_id CHAR(20) PRIMARY KEY CHECK (class_attendance_id GLOB '[0-9]*'),
     schedule_id VARCHAR NOT NULL CHECK (schedule_id GLOB '[0-9]*'),
     member_id VARCHAR NOT NULL CHECK (member_id GLOB '[0-9]*'),
-    attendance_status VARCHAR NOT NULL,
+    attendance_status VARCHAR NOT NULL CHECK (attendance_status IN ('Registered','Attended','Unattended')),
 
     FOREIGN KEY (schedule_id) REFERENCES class_schedule(schedule_id),
     FOREIGN KEY (member_id) REFERENCES members(member_id)
@@ -187,7 +187,7 @@ CREATE TABLE equipment_maintenance_log  (
     equipment_id VARCHAR NOT NULL CHECK (equipment_id GLOB '[0-9]*'),
     maintenance_date TEXT NOT NULL CHECK (date(maintenance_date) IS NOT NULL),
     description VARCHAR NOT NULL,
-    staff_id VARCHAR NOT NULL,
+    staff_id VARCHAR NOT NULL CHECK (staff_id GLOB '[0-9]*'),
 
     FOREIGN KEY (equipment_id) REFERENCES equipment(equipment_id),
     FOREIGN KEY (staff_id) REFERENCES staff(staff_id)
