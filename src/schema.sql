@@ -33,8 +33,8 @@ CREATE TABLE locations (
 CREATE TABLE members (
 
     member_id CHAR(20) PRIMARY KEY CHECK (member_id GLOB '[0-9]*'),
-    first_name VARCHAR NOT NULL,
-    last_name VARCHAR NOT NULL,
+    first_name VARCHAR NOT NULL CHECK (first_name GLOB '[A-Za-z]*'),
+    last_name VARCHAR NOT NULL CHECK (last_name GLOB '[A-Za-z]*'),
     email VARCHAR NOT NULL CHECK (email LIKE '%@%.%'),
     phone_number VARCHAR NOT NULL CHECK (phone_number GLOB '[0-9 ]*'),
     date_of_birth TEXT NOT NULL CHECK (date(date_of_birth) IS NOT NULL),
@@ -47,13 +47,13 @@ CREATE TABLE members (
 CREATE TABLE staff  (
 
     staff_id CHAR(20) PRIMARY KEY CHECK (staff_id GLOB '[0-9]*'),
-    first_name VARCHAR NOT NULL,
-    last_name VARCHAR NOT NULL,
+    first_name VARCHAR NOT NULL CHECK (first_name GLOB '[A-Za-z]*'),
+    last_name VARCHAR NOT NULL CHECK (last_name GLOB '[A-Za-z]*'),
     email VARCHAR NOT NULL CHECK (email LIKE '%@%.%'),
     phone_number VARCHAR NOT NULL CHECK (phone_number GLOB '[0-9 ]*'),
     position VARCHAR NOT NULL CHECK (position IN ('Trainer','Manager','Receptionist','Maintenance')),
     hire_date TEXT NOT NULL CHECK (date(hire_date) IS NOT NULL),
-    location_id VARCHAR NOT NULL,
+    location_id VARCHAR NOT NULL CHECK (location_id GLOB '[0-9]*'),
 
     FOREIGN KEY (location_id) REFERENCES locations(location_id)
 
@@ -68,10 +68,9 @@ CREATE TABLE equipment  (
     purchase_date TEXT NOT NULL CHECK (date(purchase_date) IS NOT NULL),
     last_maintenance_date TEXT NOT NULL CHECK (date(last_maintenance_date) IS NOT NULL),
     next_maintenance_date TEXT NOT NULL CHECK (date(next_maintenance_date) IS NOT NULL),
-    location_id VARCHAR NOT NULL,
+    location_id VARCHAR NOT NULL CHECK (location_id GLOB '[0-9]*'),
 
     FOREIGN KEY (location_id) REFERENCES locations(location_id)
-
 
 );
 
@@ -81,8 +80,8 @@ CREATE TABLE classes  (
     class_id CHAR(20) PRIMARY KEY CHECK (class_id GLOB '[0-9]*'),
     name VARCHAR NOT NULL,
     description VARCHAR NOT NULL,
-    capacity VARCHAR NOT NULL,
-    duration VARCHAR NOT NULL,
+    capacity VARCHAR NOT NULL CHECK (capacity GLOB '[0-9]*'),
+    duration VARCHAR NOT NULL CHECK (duration GLOB '[0-9]*'),
     location_id CHECK (location_id GLOB '[0-9]*'),
 
     FOREIGN KEY (location_id) REFERENCES locations(location_id)
@@ -143,10 +142,10 @@ CREATE TABLE payments  (
 
     payment_id CHAR(20) PRIMARY KEY CHECK (payment_id GLOB '[0-9]*'),
     member_id VARCHAR NOT NULL CHECK (member_id GLOB '[0-9]*'),
-    amount VARCHAR NOT NULL,
+    amount VARCHAR NOT NULL CHECK (amount GLOB '[0-9]*.[0-9][0-9]'),
     payment_date TEXT NOT NULL CHECK (date(payment_date) IS NOT NULL),
-    payment_method VARCHAR NOT NULL,
-    payment_type VARCHAR NOT NULL,
+    payment_method VARCHAR NOT NULL CHECK (payment_method IN ('Credit Card','Bank Transfer','PayPal','Cash')),
+    payment_type VARCHAR NOT NULL CHECK (payment_type IN ('Monthly membership fee','Day pass')),
 
     FOREIGN KEY (member_id) REFERENCES members(member_id)
 
@@ -158,8 +157,8 @@ CREATE TABLE personal_training_sessions  (
     member_id VARCHAR NOT NULL CHECK (member_id GLOB '[0-9]*'),
     staff_id VARCHAR NOT NULL CHECK (staff_id GLOB '[0-9]*'),
     session_date TEXT NOT NULL CHECK (date(session_date) IS NOT NULL),
-    start_time VARCHAR NOT NULL,
-    end_time VARCHAR NOT NULL,
+    start_time VARCHAR NOT NULL CHECK (time(start_time) IS NOT NULL),
+    end_time VARCHAR NOT NULL CHECK (time(end_time) IS NOT NULL),
     notes VARCHAR NOT NULL,
 
     FOREIGN KEY (member_id) REFERENCES members(member_id),
@@ -173,9 +172,9 @@ CREATE TABLE member_health_metrics  (
     member_id VARCHAR NOT NULL CHECK (member_id GLOB '[0-9]*'),
     measurement_date TEXT NOT NULL CHECK (date(measurement_date) IS NOT NULL),
     weight VARCHAR NOT NULL,
-    body_fat_percentage VARCHAR NOT NULL,
-    muscle_mass VARCHAR NOT NULL,
-    bmi VARCHAR NOT NULL,
+    body_fat_percentage VARCHAR NOT NULL CHECK (body_fat_percentage GLOB '[0-9]*.[0-9]*'),
+    muscle_mass VARCHAR NOT NULL CHECK (muscle_mass GLOB '[0-9]*.[0-9]*'),
+    bmi VARCHAR NOT NULL CHECK (bmi GLOB '[0-9]*.[0-9]*'),
 
     FOREIGN KEY (member_id) REFERENCES members(member_id)
 
