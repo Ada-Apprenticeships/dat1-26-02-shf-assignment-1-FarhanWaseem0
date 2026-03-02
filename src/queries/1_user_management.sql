@@ -18,6 +18,7 @@ SELECT COUNT(*) AS Members_Total
 FROM members;
 
 -- 1.4
+-- Links members to class and keeps count of registrations, highest count outputted
 SELECT members.member_id, members.first_name, members.last_name,
 COUNT(class_attendance.member_id) AS register_count
 FROM members
@@ -27,6 +28,7 @@ ORDER BY register_count DESC
 LIMIT 1;
 
 -- 1.5
+-- Links members to class and keeps count of registrations, lowest count outputted
 SELECT members.member_id, members.first_name, members.last_name,
 COUNT(class_attendance.member_id) AS register_count
 FROM members
