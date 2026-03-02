@@ -22,9 +22,9 @@ CREATE TABLE locations (
     location_id CHAR(20) PRIMARY KEY,
     name VARCHAR NOT NULL,
     address VARCHAR NOT NULL,
-    phone_number VARCHAR NOT NULL,
-    email VARCHAR NOT NULL,
-    opening_hours VARCHAR NOT NULL
+    phone_number VARCHAR NOT NULL CHECK (phone_number GLOB '[0-9 ]*'),
+    email VARCHAR NOT NULL CHECK (email LIKE '%@%.%'),
+    opening_hours VARCHAR NOT NULL CHECK (opening_hours GLOB '[0-9][0-9]:[0-9][0-9]-[0-9][0-9]:[0-9][0-9]')
 
 );
 
@@ -34,12 +34,12 @@ CREATE TABLE members (
     member_id CHAR(20) PRIMARY KEY,
     first_name VARCHAR NOT NULL,
     last_name VARCHAR NOT NULL,
-    email VARCHAR NOT NULL,
-    phone_number VARCHAR NOT NULL,
+    email VARCHAR NOT NULL CHECK (email LIKE '%@%.%'),
+    phone_number VARCHAR NOT NULL CHECK (phone_number GLOB '[0-9 ]*'),
     date_of_birth TEXT NOT NULL CHECK (date(date_of_birth) IS NOT NULL),
     join_date TEXT NOT NULL CHECK (date(join_date) IS NOT NULL),
     emergency_contact_name VARCHAR NOT NULL,
-    emergency_contact_phone VARCHAR NOT NULL
+    emergency_contact_phone VARCHAR NOT NULL CHECK (emergency_contact_phone GLOB '[0-9 ]*')
 
 );
 
