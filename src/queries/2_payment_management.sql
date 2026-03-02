@@ -19,4 +19,6 @@ GROUP BY strftime('%Y-%m', payment_date)
 ORDER BY month;
 
 -- 2.3 
-
+SELECT payment_id, amount, payment_date, payment_method
+FROM payments
+WHERE payment_type = 'Day pass';
