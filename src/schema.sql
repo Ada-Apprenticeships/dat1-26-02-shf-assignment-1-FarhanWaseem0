@@ -62,7 +62,7 @@ CREATE TABLE equipment  (
 
     equipment_id CHAR(20) PRIMARY KEY,
     name VARCHAR NOT NULL,
-    type VARCHAR NOT NULL CHECK (type IN ('Cardio','Strength'))
+    type VARCHAR NOT NULL CHECK (type IN ('Cardio','Strength')),
     purchase_date TEXT NOT NULL CHECK (date(purchase_date) IS NOT NULL),
     last_maintenance_date TEXT NOT NULL CHECK (date(last_maintenance_date) IS NOT NULL),
     next_maintenance_date TEXT NOT NULL CHECK (date(next_maintenance_date) IS NOT NULL),
@@ -142,7 +142,10 @@ CREATE TABLE personal_training_sessions  (
     session_date TEXT NOT NULL CHECK (date(session_date) IS NOT NULL),
     start_time VARCHAR NOT NULL,
     end_time VARCHAR NOT NULL,
-    notes VARCHAR NOT NULL
+    notes VARCHAR NOT NULL,
+
+    FOREIGN KEY (member_id) REFERENCES members(member_id),
+    FOREIGN KEY (staff_id) REFERENCES staff(staff_id)
 
 );
 
@@ -154,7 +157,9 @@ CREATE TABLE member_health_metrics  (
     weight VARCHAR NOT NULL,
     body_fat_percentage VARCHAR NOT NULL,
     muscle_mass VARCHAR NOT NULL,
-    bmi VARCHAR NOT NULL
+    bmi VARCHAR NOT NULL,
+
+    FOREIGN KEY (member_id) REFERENCES members(member_id)
 
 );
 
@@ -164,7 +169,10 @@ CREATE TABLE equipment_maintenance_log  (
     equipment_id VARCHAR NOT NULL,
     maintenance_date TEXT NOT NULL CHECK (date(maintenance_date) IS NOT NULL),
     description VARCHAR NOT NULL,
-    staff_id VARCHAR NOT NULL
+    staff_id VARCHAR NOT NULL,
+
+    FOREIGN KEY (equipment_id) REFERENCES equipment(equipment_id),
+    FOREIGN KEY (staff_id) REFERENCES staff(staff_id)
 
 );
 
