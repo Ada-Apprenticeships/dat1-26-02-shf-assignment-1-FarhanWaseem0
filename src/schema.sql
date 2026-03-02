@@ -83,7 +83,7 @@ CREATE TABLE classes  (
     description VARCHAR NOT NULL,
     capacity VARCHAR NOT NULL,
     duration VARCHAR NOT NULL,
-    location_id VARCHAR NOT NULL,
+    location_id CHECK (location_id GLOB '[0-9]*'),
 
     FOREIGN KEY (location_id) REFERENCES locations(location_id)
 
@@ -105,8 +105,8 @@ CREATE TABLE class_schedule  (
 
 CREATE TABLE memberships  (
 
-    membership_id CHAR(20) PRIMARY KEY,
-    member_id VARCHAR NOT NULL,
+    membership_id CHAR(20) PRIMARY KEY CHECK (membership_id GLOB '[0-9]*'),
+    member_id VARCHAR NOT NULL CHECK (member_id GLOB '[0-9]*'),
     type VARCHAR NOT NULL,
     start_date TEXT NOT NULL CHECK (date(start_date) IS NOT NULL),
     end_date TEXT NOT NULL CHECK (date(end_date) IS NOT NULL),
@@ -117,9 +117,9 @@ CREATE TABLE memberships  (
 
 CREATE TABLE attendance  (
 
-    attendance_id CHAR(20) PRIMARY KEY,
-    member_id VARCHAR NOT NULL,
-    location_id VARCHAR NOT NULL,
+    attendance_id CHAR(20) PRIMARY KEY CHECK (attendance_id GLOB '[0-9]*'),
+    member_id VARCHAR NOT NULL CHECK (member_id GLOB '[0-9]*'),
+    location_id VARCHAR NOT NULL CHECK (location_id GLOB '[0-9]*'),
     check_in_time VARCHAR NOT NULL,
     check_out_time VARCHAR NOT NULL,
 
@@ -129,9 +129,9 @@ CREATE TABLE attendance  (
 
 CREATE TABLE class_attendance  (
 
-    class_attendance_id CHAR(20) PRIMARY KEY,
-    schedule_id VARCHAR NOT NULL,
-    member_id VARCHAR NOT NULL,
+    class_attendance_id CHAR(20) PRIMARY KEY CHECK (class_attendance_id GLOB '[0-9]*'),
+    schedule_id VARCHAR NOT NULL CHECK (schedule_id GLOB '[0-9]*'),
+    member_id VARCHAR NOT NULL CHECK (member_id GLOB '[0-9]*'),
     attendance_status VARCHAR NOT NULL,
 
     FOREIGN KEY (schedule_id) REFERENCES class_schedule(schedule_id),
@@ -141,8 +141,8 @@ CREATE TABLE class_attendance  (
 
 CREATE TABLE payments  (
 
-    payment_id CHAR(20) PRIMARY KEY,
-    member_id VARCHAR NOT NULL,
+    payment_id CHAR(20) PRIMARY KEY CHECK (payment_id GLOB '[0-9]*'),
+    member_id VARCHAR NOT NULL CHECK (member_id GLOB '[0-9]*'),
     amount VARCHAR NOT NULL,
     payment_date TEXT NOT NULL CHECK (date(payment_date) IS NOT NULL),
     payment_method VARCHAR NOT NULL,
@@ -154,9 +154,9 @@ CREATE TABLE payments  (
 
 CREATE TABLE personal_training_sessions  (
 
-    session_id CHAR(20) PRIMARY KEY,
-    member_id VARCHAR NOT NULL,
-    staff_id VARCHAR NOT NULL,
+    session_id CHAR(20) PRIMARY KEY CHECK (session_id GLOB '[0-9]*'),
+    member_id VARCHAR NOT NULL CHECK (member_id GLOB '[0-9]*'),
+    staff_id VARCHAR NOT NULL CHECK (staff_id GLOB '[0-9]*'),
     session_date TEXT NOT NULL CHECK (date(session_date) IS NOT NULL),
     start_time VARCHAR NOT NULL,
     end_time VARCHAR NOT NULL,
@@ -169,8 +169,8 @@ CREATE TABLE personal_training_sessions  (
 
 CREATE TABLE member_health_metrics  (
 
-    metric_id CHAR(20) PRIMARY KEY,
-    member_id VARCHAR NOT NULL,
+    metric_id CHAR(20) PRIMARY KEY CHECK (metric_id GLOB '[0-9]*'),
+    member_id VARCHAR NOT NULL CHECK (member_id GLOB '[0-9]*'),
     measurement_date TEXT NOT NULL CHECK (date(measurement_date) IS NOT NULL),
     weight VARCHAR NOT NULL,
     body_fat_percentage VARCHAR NOT NULL,
@@ -183,8 +183,8 @@ CREATE TABLE member_health_metrics  (
 
 CREATE TABLE equipment_maintenance_log  (
 
-    log_id CHAR(20) PRIMARY KEY,
-    equipment_id VARCHAR NOT NULL,
+    log_id CHAR(20) PRIMARY KEY CHECK (log_id GLOB '[0-9]*'),
+    equipment_id VARCHAR NOT NULL CHECK (equipment_id GLOB '[0-9]*'),
     maintenance_date TEXT NOT NULL CHECK (date(maintenance_date) IS NOT NULL),
     description VARCHAR NOT NULL,
     staff_id VARCHAR NOT NULL,
