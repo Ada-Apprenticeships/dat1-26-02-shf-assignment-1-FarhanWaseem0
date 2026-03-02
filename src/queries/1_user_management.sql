@@ -27,10 +27,12 @@ ORDER BY register_count DESC
 LIMIT 1;
 
 -- 1.5
-SELECT member_id, COUNT(*) AS Classes_Registered
-FROM class_attendance 
-GROUP BY member_id
-ORDER BY COUNT(*) ASC
+SELECT members.member_id, members.first_name, members.last_name,
+COUNT(class_attendance.member_id) AS register_count
+FROM members
+JOIN class_attendance ON members.member_id = class_attendance.member_id
+GROUP BY members.member_id
+ORDER BY register_count ASC
 LIMIT 1;
 
 -- 1.6
