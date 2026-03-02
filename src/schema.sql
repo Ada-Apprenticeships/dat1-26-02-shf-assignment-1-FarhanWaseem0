@@ -48,9 +48,9 @@ CREATE TABLE staff  (
     staff_id CHAR(20) PRIMARY KEY,
     first_name VARCHAR NOT NULL,
     last_name VARCHAR NOT NULL,
-    email VARCHAR NOT NULL,
-    phone_number VARCHAR NOT NULL,
-    position VARCHAR NOT NULL,
+    email VARCHAR NOT NULL CHECK (email LIKE '%@%.%'),
+    phone_number VARCHAR NOT NULL CHECK (phone_number GLOB '[0-9 ]*'),
+    position VARCHAR NOT NULL CHECK (position IN ('Trainer','Manager','Receptionist','Maintenance')),
     hire_date TEXT NOT NULL CHECK (date(hire_date) IS NOT NULL),
     location_id VARCHAR NOT NULL
 
