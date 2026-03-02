@@ -32,4 +32,13 @@ ORDER BY COUNT(*) ASC
 LIMIT 1;
 
 -- 1.6
+SELECT COUNT(*) AS Classes_Registered
+FROM class_attendance
+(
+    SELECT member_id
+    FROM class_attendance
+    WHERE attendance_status = 'Attended'
+    GROUP BY member_id
+    HAVING Classes_Registered >= 2
+)
 
