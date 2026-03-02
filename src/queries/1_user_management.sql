@@ -25,7 +25,11 @@ ORDER BY COUNT(*) DESC
 LIMIT 1;
 
 -- 1.5
-
+SELECT member_id, COUNT(*) AS Classes_Registered
+FROM class_attendance 
+GROUP BY member_id
+ORDER BY COUNT(*) ASC
+LIMIT 1;
 
 -- 1.6
 
