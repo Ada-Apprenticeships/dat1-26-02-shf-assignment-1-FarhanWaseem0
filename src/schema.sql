@@ -1,5 +1,6 @@
 .open fittrackpro.db
 .mode box
+PRAGMA foreign_keys = ON;
 
 -- For dropping the tables when not needed
 DROP TABLE IF EXISTS locations;
@@ -61,8 +62,8 @@ CREATE TABLE equipment  (
 
     equipment_id CHAR(20) PRIMARY KEY,
     name VARCHAR NOT NULL,
-    type VARCHAR NOT NULL,
-    purchase_date VARCHAR NOT NULL,
+    type VARCHAR NOT NULL CHECK (type IN ('Cardio','Strength'))
+    purchase_date TEXT NOT NULL CHECK (date(purchase_date) IS NOT NULL),
     last_maintenance_date TEXT NOT NULL CHECK (date(last_maintenance_date) IS NOT NULL),
     next_maintenance_date TEXT NOT NULL CHECK (date(next_maintenance_date) IS NOT NULL),
     location_id VARCHAR NOT NULL
