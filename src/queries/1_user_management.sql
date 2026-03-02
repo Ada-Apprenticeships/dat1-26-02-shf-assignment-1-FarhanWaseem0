@@ -1,3 +1,5 @@
+.read schema.sql
+.read insertion.sql
 .open fittrackpro.db
 .mode column
 
@@ -15,7 +17,11 @@ SELECT COUNT(*) AS Members_Total
 FROM members;
 
 -- 1.4
-
+SELECT member_id, COUNT(*) AS Classes_Registered
+FROM class_attendance 
+GROUP member_id
+ORDER Classes_Registration DESC
+LIMIT 1;
 
 -- 1.5
 
