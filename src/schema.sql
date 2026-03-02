@@ -20,7 +20,7 @@ DROP TABLE IF EXISTS equipment_maintenance_log;
 
 CREATE TABLE locations (
 
-    location_id CHAR(20) PRIMARY KEY,
+    location_id CHAR(20) PRIMARY KEY CHECK (location_id GLOB '[0-9]*'),
     name VARCHAR NOT NULL,
     address VARCHAR NOT NULL,
     phone_number VARCHAR NOT NULL CHECK (phone_number GLOB '[0-9 ]*'),
@@ -32,7 +32,7 @@ CREATE TABLE locations (
 
 CREATE TABLE members (
 
-    member_id CHAR(20) PRIMARY KEY,
+    member_id CHAR(20) PRIMARY KEY CHECK (member_id GLOB '[0-9]*'),
     first_name VARCHAR NOT NULL,
     last_name VARCHAR NOT NULL,
     email VARCHAR NOT NULL CHECK (email LIKE '%@%.%'),
@@ -46,7 +46,7 @@ CREATE TABLE members (
 
 CREATE TABLE staff  (
 
-    staff_id CHAR(20) PRIMARY KEY,
+    staff_id CHAR(20) PRIMARY KEY CHECK (staff_id GLOB '[0-9]*'),
     first_name VARCHAR NOT NULL,
     last_name VARCHAR NOT NULL,
     email VARCHAR NOT NULL CHECK (email LIKE '%@%.%'),
@@ -62,7 +62,7 @@ CREATE TABLE staff  (
 
 CREATE TABLE equipment  (
 
-    equipment_id CHAR(20) PRIMARY KEY,
+    equipment_id CHAR(20) PRIMARY KEY CHECK (equipment_id GLOB '[0-9]*'),
     name VARCHAR NOT NULL,
     type VARCHAR NOT NULL CHECK (type IN ('Cardio','Strength')),
     purchase_date TEXT NOT NULL CHECK (date(purchase_date) IS NOT NULL),
@@ -78,7 +78,7 @@ CREATE TABLE equipment  (
 
 CREATE TABLE classes  (
 
-    class_id CHAR(20) PRIMARY KEY,
+    class_id CHAR(20) PRIMARY KEY CHECK (class_id GLOB '[0-9]*'),
     name VARCHAR NOT NULL,
     description VARCHAR NOT NULL,
     capacity VARCHAR NOT NULL,
@@ -92,9 +92,9 @@ CREATE TABLE classes  (
 
 CREATE TABLE class_schedule  (
 
-    schedule_id CHAR(20) PRIMARY KEY,
-    class_id VARCHAR NOT NULL,
-    staff_id VARCHAR NOT NULL,
+    schedule_id CHAR(20) PRIMARY KEY CHECK (schedule_id GLOB '[0-9]*'),
+    class_id CHAR(20) CHECK (class_id GLOB '[0-9]*'),
+    staff_id VCHAR(20) CHECK (staff_id GLOB '[0-9]*'),
     start_time VARCHAR NOT NULL,
     end_time VARCHAR NOT NULL,
 
