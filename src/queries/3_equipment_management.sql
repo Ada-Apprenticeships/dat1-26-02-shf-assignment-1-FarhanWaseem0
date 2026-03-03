@@ -17,4 +17,7 @@ FROM equipment
 GROUP BY type;
 
 -- 3.3 
-
+SELECT type, 
+AVG(julianday('2025-01-01')) - julianday((purchase_date)) AS avg_age_days
+FROM equipment
+GROUP BY type;
