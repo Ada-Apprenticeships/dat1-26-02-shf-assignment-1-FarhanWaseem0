@@ -22,4 +22,11 @@ WHERE schedule_id = 7 AND member_id = 3;
 
 
 -- 4.6 
-
+SELECT AVG(class_count) AS average_classes_per_member
+FROM
+(
+    SELECT member_id, COUNT(*) AS class_count
+    FROM class_attendance
+    WHERE attendance_status IN ('Attended', 'Registered')
+    GROUP BY member_id
+);
