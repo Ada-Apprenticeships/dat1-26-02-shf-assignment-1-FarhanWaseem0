@@ -4,6 +4,7 @@ PRAGMA foreign_keys = ON;
 .read /workspaces/dat1-26-02-shf-assignment-1-FarhanWaseem0/src/schema.sql
 .read /workspaces/dat1-26-02-shf-assignment-1-FarhanWaseem0/src/insertion.sql
 
+
 -- 4.1 
 SELECT classes.class_id, classes.name, 
 staff.first_name || ' ' || staff.last_name AS instructor_name
@@ -38,6 +39,18 @@ WHERE schedule_id = 7 AND member_id = 3;
 
 
 -- 4.5 
+SELECT classes.class_id,
+    classes.name AS class_name,
+    COUNT(class_attendance.member_id) AS registration_count
+FROM classes
+JOIN class_schedule 
+    ON classes.class_id = class_schedule.class_id
+JOIN class_attendance 
+    ON classes.class_id = class_schedule.schedule_id
+WHERE class_attendance.attendance_status = 'Registered'
+GROUP BY classes.class_id
+ORDER BY registration_count DESC
+LIMIT 1;
 
 
 -- 4.6 
