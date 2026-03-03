@@ -5,7 +5,11 @@ PRAGMA foreign_keys = ON;
 .read /workspaces/dat1-26-02-shf-assignment-1-FarhanWaseem0/src/insertion.sql
 
 -- 4.1 
-
+SELECT classes.class_id, classes.name, 
+staff.first_name || ' ' || staff.last_name AS instructor_name
+FROM classes
+JOIN class_schedule ON classes.class_id = class_schedule.class_id
+JOIN staff ON class_schedule.staff_id;
 
 -- 4.2 
 
