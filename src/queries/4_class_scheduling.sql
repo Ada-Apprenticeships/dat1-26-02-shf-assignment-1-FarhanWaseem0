@@ -10,7 +10,7 @@ SELECT classes.class_id, classes.name,
 staff.first_name || ' ' || staff.last_name AS instructor_name
 FROM classes
 JOIN class_schedule ON classes.class_id = class_schedule.class_id
-JOIN staff ON class_schedule.staff_id;
+JOIN staff ON class_schedule.staff_id = staff.staff_id;
 
 
 -- 4.2 
@@ -29,36 +29,56 @@ GROUP BY class_schedule.schedule_id;
 
 
 -- 4.3 
-INSERT INTO class_attendance(class_id, schedule_id, member_id, attendance_status)
-VALUES (1, 1, 11, 'Registered');
+INSERT INTO
+    class_attendance(
+        class_id,
+        schedule_id,
+        member_id,
+        attendance_status
+    )
+VALUES
+    (1, 1, 11, 'Registered');
 
 
 -- 4.4 
-DELETE FROM class_attendance
-WHERE schedule_id = 7 AND member_id = 3;
+DELETE FROM
+    class_attendance
+WHERE
+    schedule_id = 7
+    AND member_id = 3;
 
 
 -- 4.5 
-SELECT classes.class_id,
+SELECT
+    classes.class_id,
     classes.name AS class_name,
     COUNT(class_attendance.member_id) AS registration_count
-FROM classes
-JOIN class_schedule 
-    ON classes.class_id = class_schedule.class_id
-JOIN class_attendance 
-    ON classes.class_id = class_schedule.schedule_id
-WHERE class_attendance.attendance_status = 'Registered'
-GROUP BY classes.class_id
-ORDER BY registration_count DESC
-LIMIT 1;
+FROM
+    classes
+    JOIN class_schedule ON classes.class_id = class_schedule.class_id
+    JOIN class_attendance ON classes.class_id = class_schedule.schedule_id
+WHERE
+    class_attendance.attendance_status = 'Registered'
+GROUP BY
+    classes.class_id
+ORDER BY
+    registration_count DESC
+LIMIT
+    1;
 
 
 -- 4.6 
-SELECT AVG(class_count) AS average_classes_per_member
+SELECT
+    AVG(class_count) AS average_classes_per_member
 FROM
-(
-    SELECT member_id, COUNT(*) AS class_count
-    FROM class_attendance
-    WHERE attendance_status IN ('Attended', 'Registered')
-    GROUP BY member_id
-);
+    (
+        SELECT
+            member_id,
+            COUNT(*) AS class_count
+        FROM
+            class_attendance
+        WHERE
+            attendance_status IN ('Attended', 'Registered')
+        GROUP BY
+            member_id
+    );
