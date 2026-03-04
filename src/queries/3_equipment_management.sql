@@ -28,9 +28,11 @@ GROUP BY
 
 
 -- 3.3 
+-- Calculate the average age (in days) of equipment by type
+-- using current date as the reference date
 SELECT
     type,
-    AVG(julianday('2025-01-01')) - julianday((purchase_date)) AS avg_age_days
+    AVG(julianday(Date('now'))) - julianday((purchase_date)) AS avg_age_days
 FROM
     equipment
 GROUP BY

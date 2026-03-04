@@ -5,6 +5,9 @@ PRAGMA foreign_keys = ON;
 .read /workspaces/dat1-26-02-shf-assignment-1-FarhanWaseem0/src/insertion.sql
 
 -- 8.1 
+-- Retrieve all personal training sessions delivered by Ivy Irwin.
+-- Displays the session details along with the member's full name.
+-- Filters sessions based on the trainer’s first and last name.
 SELECT
     personal_training_sessions.session_id,
     members.first_name || ' ' || members.last_name AS member_name,

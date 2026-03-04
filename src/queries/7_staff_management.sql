@@ -6,6 +6,8 @@ PRAGMA foreign_keys = ON;
 
 
 -- 7.1 
+-- Retrieve all staff members and display their role.
+-- Results are ordered alphabetically by position.
 SELECT
   staff_id,
   first_name,
@@ -16,7 +18,10 @@ FROM
 ORDER BY
   position;
 
+
 -- 7.2 
+-- Count the number of personal training sessions delivered by each trainer between 20 January 2025 and 19 February 2025.
+-- Filters staff by position and limits sessions to the given date range.
 SELECT
   staff.staff_id AS trainer_id,
   staff.first_name || ' ' || staff.last_name AS trainer_name,

@@ -19,6 +19,8 @@ WHERE
 
 
 -- 5.2 
+-- Calculate the average visit duration (in minutes) for each membership type.
+-- Duration is calculated using the difference between check-in and check-out times.
 SELECT
     memberships.type AS membership_type,
     AVG(
@@ -34,6 +36,8 @@ GROUP BY
 
 
 -- 5.3 
+-- Retrieve members whose memberships expire during 2025.
+-- This filters membership end dates within the specified range.
 SELECT
     members.member_id,
     members.first_name,

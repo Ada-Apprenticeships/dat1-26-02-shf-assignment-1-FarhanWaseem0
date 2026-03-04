@@ -29,6 +29,8 @@ WHERE
 
 
 -- 6.3 
+-- Identify the day of the week with the highest number of visits.
+-- Uses strftime('%w') to extract the weekday number (0–6).
 SELECT
     strftime('%w', check_in_time) AS day_of_week,
     COUNT(*) AS visit_count
@@ -43,6 +45,9 @@ LIMIT
 
 
 -- 6.4 
+-- Calculate the average daily attendance for each location.
+-- A subquery first calculates total visits per location per day,
+-- then the outer query averages those daily totals.
 SELECT
     locations.name AS location_name,
     AVG(daily_visits.daily_count) AS avg_daily_attendance

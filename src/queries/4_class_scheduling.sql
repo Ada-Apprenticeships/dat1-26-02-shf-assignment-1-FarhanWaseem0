@@ -14,6 +14,9 @@ JOIN staff ON class_schedule.staff_id = staff.staff_id;
 
 
 -- 4.2 
+-- Calculate the number of available spots for each class 
+-- On 1 February 2025 by subtracting registered/attended members 
+-- From the class capacity.
 SELECT class_schedule.class_id,
     classes.name AS name,
     class_schedule.start_time,
@@ -29,6 +32,8 @@ GROUP BY class_schedule.schedule_id;
 
 
 -- 4.3 
+-- Insert a new class registration for member 11 
+-- For schedule 1 with a status of 'Registered'.
 INSERT INTO
     class_attendance(
         class_attendance_id,
@@ -49,6 +54,8 @@ WHERE
 
 
 -- 4.5 
+-- Identify the class with the highest number of registrations.
+-- Counts only records with status 'Registered'.
 SELECT
     classes.class_id,
     classes.name AS class_name,
@@ -68,6 +75,8 @@ LIMIT
 
 
 -- 4.6 
+-- Calculate the average number of classes attended or registered 
+-- Per member using a subquery.
 SELECT
     AVG(class_count) AS average_classes_per_member
 FROM

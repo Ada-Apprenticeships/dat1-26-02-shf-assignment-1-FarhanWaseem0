@@ -27,6 +27,8 @@ VALUES
 
 
 -- 2.2 
+-- Calculate total monthly revenue from membership fees 
+-- between November 2024 and February 2025
 SELECT
   strftime('%Y-%m', payment_date) AS month,
   SUM(amount) AS total_revenue
@@ -37,7 +39,7 @@ WHERE
   AND payment_date >= '2024-11-01'
   AND payment_date < '2025-03-01'
 GROUP BY
-  strftime('%Y-%m', payment_date)
+  month
 ORDER BY
   month;
 
