@@ -61,17 +61,20 @@ SELECT
 FROM
     members
     JOIN class_attendance ON members.member_id = class_attendance.member_id
+
+WHERE 
+    class_attendance.attendance_status = 'Attended'
 GROUP BY
     members.member_id
 ORDER BY
-    register_count ASC
+    register_count 
 LIMIT
     1;
 
 
 -- 1.6
 SELECT
-    COUNT()
+    COUNT(*)
 FROM
     (
         SELECT
@@ -83,7 +86,7 @@ FROM
         GROUP BY
             member_id
         HAVING
-            COUNT() >= 2
-    )
+            COUNT(*) >= 2
+    );
 
 

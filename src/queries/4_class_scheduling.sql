@@ -31,13 +31,13 @@ GROUP BY class_schedule.schedule_id;
 -- 4.3 
 INSERT INTO
     class_attendance(
-        class_id,
+        class_attendance_id,
         schedule_id,
         member_id,
         attendance_status
     )
 VALUES
-    (1, 1, 11, 'Registered');
+    (16, 1, 11, 'Registered');
 
 
 -- 4.4 
